@@ -1,10 +1,22 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:variable_app_icon/variable_app_icon.dart';
 
+const List<String> iosAppIcons = ["AppIcon", "AppIcon2", "AppIcon3"];
+
+const List<String> androidIconIds = [
+  "appicon.DEFAULT",
+  "appicon.TEAL",
+  "appicon.ORANGE"
+];
+
 void main() {
+  VariableAppIcon.iOSDefaultAppIcon = iosAppIcons[0];
+  VariableAppIcon.androidAppIconIds = androidIconIds;
+
   runApp(const MyApp());
 }
 
@@ -16,10 +28,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-
-  String currentIcon = "AppIcon";
-  List<String> appIcons = ["AppIcon", "AppIcon2", "AppIcon3"];
+  int currentIconIndex = 0;
 
   @override
   void initState() {
@@ -29,21 +38,22 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> loadCurrentIcon() async {
     final prefs = await SharedPreferences.getInstance();
-    final name = prefs.getString("currentAppIcon") ?? currentIcon;
-    print(name);
+    final index = prefs.getInt("currentIconIndex") ?? currentIconIndex;
     setState(() {
-      currentIcon = name;
+      currentIconIndex = index;
     });
   }
 
-  Future<void> changeIcon(String? value) async {
+  Future<void> changeIcon(int? value) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("currentAppIcon", value!);
+    await prefs.setInt("currentIconIndex", value!);
     print(value);
     setState(() {
-      currentIcon = value;
+      currentIconIndex = value;
     });
-    await VariableAppIcon.changeAppIcon(value == "AppIcon" ? "" : value);
+    await VariableAppIcon.changeAppIcon(
+        androidIconId: androidIconIds[currentIconIndex],
+        iosIcon: iosAppIcons[currentIconIndex]);
   }
 
   @override
@@ -51,15 +61,17 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Plugin Example App'),
         ),
         body: Center(
-          child: DropdownButton<String>(
-            value: currentIcon,
-            items: appIcons
-                .map((name) => DropdownMenuItem<String>(
-                      child: Text(name),
-                      value: name,
+          child: DropdownButton<int>(
+            value: currentIconIndex,
+            items: [0, 1, 2]
+                .map((index) => DropdownMenuItem<int>(
+                      child: Text(Platform.isAndroid
+                          ? androidIconIds[index]
+                          : iosAppIcons[index]),
+                      value: index,
                     ))
                 .toList(),
             onChanged: changeIcon,

@@ -1,6 +1,6 @@
 name: variable_app_icon
-description: A plugin to use multiple app icon on iOS
-version: 0.0.1
+description: A plugin to use multiple app icon on Android and iOS.
+version: 0.0.2
 homepage: https://github.com/SNNafi/variable_app_icon
 
 environment:
@@ -35,6 +35,9 @@ flutter:
   plugin:
     platforms:
       ios:
+        pluginClass: VariableAppIconPlugin
+      android:
+        package: com.snnafi.variable_app_icon
         pluginClass: VariableAppIconPlugin
 
   # To add assets to your plugin package, add an assets section, like this:

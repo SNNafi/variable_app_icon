@@ -23,7 +23,7 @@ abstract class VariableAppIconPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> changeAppIcon(String? name) {
+  Future<String?> changeAppIcon(String? iosIcon, String? androidIconId) {
     throw UnimplementedError('changeAppIcon() has not been implemented.');
   }
 }

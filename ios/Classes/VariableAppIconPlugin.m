@@ -11,8 +11,9 @@
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
   if ([@"changeAppIcon" isEqualToString:call.method]) {
-      NSString *iconName = (NSString*) call.arguments[@"name"];
-      [UIApplication.sharedApplication setAlternateIconName:[iconName isEqualToString:@""] ? nil : iconName completionHandler:nil];
+      NSString *iconName = (NSString*) call.arguments[@"iosIcon"];
+      NSString *defaultiOSIcon = (NSString*) call.arguments[@"defaultiOS"];
+      [UIApplication.sharedApplication setAlternateIconName:[iconName isEqualToString:defaultiOSIcon] ? nil : iconName completionHandler:nil];
   } else {
     result(FlutterMethodNotImplemented);
   }
