@@ -1,5 +1,6 @@
 package com.snnafi.variable_app_icon
 
+import android.app.Activity
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -20,7 +21,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 
 /** VariableAppIconPlugin */
 class VariableAppIconPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
-    private var activity: FlutterActivity? = null
+    private var activity: Activity? = null
     private var binaryMessenger: BinaryMessenger? = null
 
     /// The MethodChannel that will the communication between Flutter and native Android
@@ -52,7 +53,7 @@ class VariableAppIconPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        this.activity = binding.activity as FlutterActivity
+        this.activity = binding.activity
         channel = MethodChannel(binaryMessenger!!, "variable_app_icon")
         channel.setMethodCallHandler(this)
     }
