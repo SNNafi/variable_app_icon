@@ -1,6 +1,6 @@
 name: variable_app_icon
 description: A plugin to use multiple app icon on Android and iOS.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/SNNafi/variable_app_icon
 
 environment:
