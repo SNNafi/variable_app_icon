@@ -5,3 +5,7 @@
 ## 0.0.2
 
 * Add android support. Now, we can use this library to change app icon in android also
+
+## 0.0.3
+
+* Fix issue releated to android 12
