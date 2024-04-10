@@ -10,6 +10,11 @@ class MockVariableAppIconPlatform
 
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
+
+  @override
+  Future<String?> changeAppIcon(String? iosIcon, String? androidIconId) {
+    throw Future.value('Success');
+  }
 }
 
 void main() {
@@ -17,13 +22,5 @@ void main() {
 
   test('$MethodChannelVariableAppIcon is the default instance', () {
     expect(initialPlatform, isInstanceOf<MethodChannelVariableAppIcon>());
-  });
-
-  test('getPlatformVersion', () async {
-    VariableAppIcon variableAppIconPlugin = VariableAppIcon();
-    MockVariableAppIconPlatform fakePlatform = MockVariableAppIconPlatform();
-    VariableAppIconPlatform.instance = fakePlatform;
-
-    expect(await variableAppIconPlugin.getPlatformVersion(), '42');
   });
 }

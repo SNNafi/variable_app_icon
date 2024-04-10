@@ -1,28 +1,35 @@
 PODS:
   - Flutter (1.0.0)
-  - shared_preferences_ios (0.0.1):
+  - integration_test (0.0.1):
     - Flutter
-  - variable_app_icon (0.0.1):
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - variable_app_icon (0.0.3):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - variable_app_icon (from `.symlinks/plugins/variable_app_icon/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  shared_preferences_ios:
-    :path: ".symlinks/plugins/shared_preferences_ios/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   variable_app_icon:
     :path: ".symlinks/plugins/variable_app_icon/ios"
 
 SPEC CHECKSUMS:
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
-  variable_app_icon: 77079bb62e9b19f424a4aef8dafef86492be13ca
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  integration_test: 13825b8a9334a850581300559b8839134b124670
+  shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
+  variable_app_icon: 88087c0538ab5bc21ec5913e526a6e5611622e97
 
-PODFILE CHECKSUM: 663715e941f9adb426e33bf9376914006f9ea95b
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.15.2

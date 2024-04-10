@@ -21,3 +21,4 @@ class MethodChannelVariableAppIcon extends VariableAppIconPlatform {
     return version;
   }
 }
+

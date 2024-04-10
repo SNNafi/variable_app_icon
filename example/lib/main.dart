@@ -1,7 +1,9 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:variable_app_icon/variable_app_icon.dart';
 
@@ -68,11 +70,11 @@ class _MyAppState extends State<MyApp> {
             value: currentIconIndex,
             items: [0, 1, 2]
                 .map((index) => DropdownMenuItem<int>(
-                      child: Text(Platform.isAndroid
-                          ? androidIconIds[index]
-                          : iosAppIcons[index]),
-                      value: index,
-                    ))
+              value: index,
+              child: Text(Platform.isAndroid
+                  ? androidIconIds[index]
+                  : iosAppIcons[index]),
+            ))
                 .toList(),
             onChanged: changeIcon,
           ),
@@ -81,3 +83,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
