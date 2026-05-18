@@ -28,7 +28,7 @@ class VariableAppIconPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
-  private lateinit var channel: MethodChannel
+  private var channel: MethodChannel? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     binaryMessenger = flutterPluginBinding.binaryMessenger
@@ -56,11 +56,12 @@ class VariableAppIconPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     this.activity = binding.activity as Activity
     channel = MethodChannel(binaryMessenger!!, "variable_app_icon")
-    channel.setMethodCallHandler(this)
+    channel?.setMethodCallHandler(this)
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-    channel.setMethodCallHandler(null)
+    channel?.setMethodCallHandler(null)
+    channel = null
   }
 
   override fun onDetachedFromActivityForConfigChanges() {}
